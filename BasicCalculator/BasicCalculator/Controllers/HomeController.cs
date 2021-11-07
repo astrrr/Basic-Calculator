@@ -23,8 +23,40 @@ namespace BasicCalculator.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Message01()
         {
+            string msg = "Hello, This is a test Ajax message";
+            return Content(msg, "text/html", System.Text.Encoding.UTF8);
+        }
+        public IActionResult Message02()
+        {
+            string msg = "<ul><li>topic01</li><li>topic02</li><li>topic03</li><li>topic04</li><li>topic05</li></ul>";
+            return Content(msg, "text/pain", System.Text.Encoding.UTF8);
+        }
+
+        public IActionResult Number3()
+        {
+            string num = "3";
+            
+            return Content(num, "text/html", System.Text.Encoding.UTF8); 
+        }
+
+        public IActionResult Number4()
+        {
+            string num = "4";
+            ViewBag.num = num;
+            return View();
+        }
+        public IActionResult Number5()
+        {
+            string num = "5";
+            ViewBag.num = num;
+            return View();
+        }
+        public IActionResult Number6()
+        {
+            string num = "6";
+            ViewBag.num = num;
             return View();
         }
 

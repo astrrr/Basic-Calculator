@@ -69,3 +69,12 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.buttonSize {
+    width: 70px;
+    height: 50px;
+}
+
+.form-control {
+    width: 310px;
+}
