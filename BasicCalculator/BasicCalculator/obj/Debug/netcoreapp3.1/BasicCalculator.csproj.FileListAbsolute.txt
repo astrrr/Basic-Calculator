@@ -35,4 +35,3 @@ D:\basic calculator\BasicCalculator\BasicCalculator\obj\Debug\netcoreapp3.1\Basi
 D:\basic calculator\BasicCalculator\BasicCalculator\obj\Debug\netcoreapp3.1\BasicCalculator.pdb
 D:\basic calculator\BasicCalculator\BasicCalculator\obj\Debug\netcoreapp3.1\BasicCalculator.genruntimeconfig.cache
 D:\basic calculator\BasicCalculator\BasicCalculator\obj\Debug\netcoreapp3.1\BasicCalculator.csproj.CopyComplete
-D:\basic calculator\BasicCalculator\BasicCalculator\obj\Debug\netcoreapp3.1\Razor\Views\Home\Message01.cshtml.g.cs
