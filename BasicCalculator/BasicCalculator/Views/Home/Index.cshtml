@@ -34,38 +34,19 @@
             <td>&nbsp;<input class="buttonSize" id="Button0" type="button" value="0" onclick="pressNum('0')"></td>
             <td>&nbsp;<input class="buttonSize" id="Button=" type="button" value="=" onclick="equ()"></td>
             <td>&nbsp;<input class="buttonSize" id="ButtonAdd" type="button" value="+" onclick="add()"></td>
+              
         </tr>
     </table>
 </div>
 
-<div>
-    <h2>Part I</h2>
-    click here ==>
-    <a href="" onclick="MakeReq('https://localhost:44316/Home/Message01', 'p01'); return false;">hello</a>
-    <div id="p01"></div>
-</div>
-<div>
-    <h2>Part II</h2>
-    click here ==>
-    <a href="" onclick="MakeReq('https://localhost:44316/Home/Message02', 'p02'); return false;">test</a>
-    <div id="p02"></div>
-</div>
+
 
 
 <script>
     var display = document.getElementById('result');
 
     var xmlhttp = new XMLHttpRequest();
-    function MakeReq(serverpage, objID) {
-        let obj = document.getElementById(objID);
-        xmlhttp.open("GET", serverpage);
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                obj.innerHTML = xmlhttp.responseText;
-            }
-        }
-        xmlhttp.send(null);
-    }
+    
 
     function pressNum(num) {
         if (display.value[0] == '0') {
