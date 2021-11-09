@@ -3,7 +3,7 @@
 }
 
  <div class="text-center">
-    <input class="form-control" id="result" type="text" disabled value="">
+    <input class="form-control" id="result" name="result" type="text" disabled value="0">
     <table>
         <tr>
             <td>&nbsp;</td>
@@ -12,27 +12,27 @@
             <td>&nbsp;<input class="buttonSize" id="ButtonDel" type="button" value="Del" onclick="del()"></td>
         </tr>
         <tr>
-            <td>&nbsp;<input class="buttonSize" id="Button7" type="button" value="7" onclick="num7()"></td>
-            <td>&nbsp;<input class="buttonSize" id="Button8" type="button" value="8" onclick="num8()"></td>
-            <td>&nbsp;<input class="buttonSize" id="Button9" type="button" value="9" onclick="num9()"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button7" type="button" value="7" onclick="pressNum('7')"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button8" type="button" value="8" onclick="pressNum('8')"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button9" type="button" value="9" onclick="pressNum('9')"></td>
             <td>&nbsp;<input class="buttonSize" id="ButtonDiv" type="button" value="÷" onclick="divide()"></td>
         </tr>
         <tr>
-            <td>&nbsp;<input class="buttonSize" id="Button4" type="button" value="4" onclick="num4()"></td>
-            <td>&nbsp;<input class="buttonSize" id="Button5" type="button" value="5" onclick="num5()"></td>
-            <td>&nbsp;<input class="buttonSize" id="Button6" type="button" value="6" onclick="num6()"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button4" type="button" value="4" onclick="pressNum('4')"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button5" type="button" value="5" onclick="pressNum('5')"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button6" type="button" value="6" onclick="pressNum('6')"></td>
             <td>&nbsp;<input class="buttonSize" id="ButtonMul" type="button" value="×" onclick="mul()"></td>
         </tr>
         <tr>
-            <td>&nbsp;<input class="buttonSize" id="Button1" type="button" value="1" onclick="num1()"></td>
-            <td>&nbsp;<input class="buttonSize" id="Button2" type="button" value="2" onclick="num2()"></td>
-            <td>&nbsp;<input class="buttonSize" id="Button3" type="button" value="3" onclick="num3()" ></td>
-            <td>&nbsp;<input class="buttonSize" id="ButtonSub" type="button" value="-" ></td>
+            <td>&nbsp;<input class="buttonSize" id="Button1" type="button" value="1" onclick="pressNum('1')"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button2" type="button" value="2" onclick="pressNum('2')"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button3" type="button" value="3" onclick="pressNum('3')" ></td>
+            <td>&nbsp;<input class="buttonSize" id="ButtonSub" type="button" value="-" onclick="sub()"></td>
         </tr>
         <tr>
-            <td>&nbsp;<input class="buttonSize" id="Button." type="button" value="." onclick="dot()"></td>
-            <td>&nbsp;<input class="buttonSize" id="Button0" type="button" value="0" onclick="num0()"></td>
-            <td>&nbsp;<input class="buttonSize" id="Button=" type="button" value="=" ></td>
+            <td>&nbsp;<input class="buttonSize" id="Button." type="button" value="." onclick="pressNum('.')"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button0" type="button" value="0" onclick="pressNum('0')"></td>
+            <td>&nbsp;<input class="buttonSize" id="Button=" type="button" value="=" onclick="equ()"></td>
             <td>&nbsp;<input class="buttonSize" id="ButtonAdd" type="button" value="+" onclick="add()"></td>
         </tr>
     </table>
@@ -53,6 +53,8 @@
 
 
 <script>
+    var display = document.getElementById('result');
+
     var xmlhttp = new XMLHttpRequest();
     function MakeReq(serverpage, objID) {
         let obj = document.getElementById(objID);
@@ -65,88 +67,68 @@
         xmlhttp.send(null);
     }
 
-    function num0() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('0');
+    function pressNum(num) {
+        if (display.value[0] == '0') {
+            display.value = display.value.slice(1, -1);
+            display.value = display.value.concat(num);
+            console.log("have zero");
+        }
+        else {
+            display.value = display.value.concat(num);
+        }
     }
 
-    function num1() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('1');
-    }
-
-    function num2() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('2');
-    }
-
-    function num3() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('3');
-    }
-
-    function num4() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('4');
-    }
-
-    function num5() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('5');
-    }
-
-    function num6() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('6');
-    }
-
-    function num7() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('7');
-    }
-
-    function num8() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('8');
-    }
-
-    function num9() {
-        display = document.getElementById('result');
-        display.value = display.value.concat('9');
-    }
-
+    
     function add() {
-        display = document.getElementById('result');
+        
         display.value = display.value.concat('+');
     }
 
     function sub() {
-        display = document.getElementById('result');
+        
         display.value = display.value.concat('-');
     }
 
     function divide() {
-        display = document.getElementById('result');
+       
         display.value = display.value.concat('÷');
     }
 
     function mul() {
-        display = document.getElementById('result');
+       
         display.value = display.value.concat('×');
     }
 
     function dot() {
-        display = document.getElementById('result');
+        
         display.value = display.value.concat('.');
     }
 
     function ac() {
-        display = document.getElementById('result');
-        display.value = '';
+        
+        display.value = '0';
     }
 
     function del() {
-        display = document.getElementById('result');
+        let txt = display.value;
+        if (!(display.value[0] == '0')) {
+
         display.value = display.value.slice(0, -1);
+        }
+        if (txt.length == 1 && txt != '0') {
+            display.value = '0';
+        }
+    }
+
+    function equ() {
+        
+        let txt = display.value;
+        xmlhttp.open("GET", "https://localhost:44316/Home/Operate?rawResult="+ txt);
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    display.value = xmlhttp.responseText;
+                }
+            }
+        xmlhttp.send();
     }
 </script>

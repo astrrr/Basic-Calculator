@@ -34,31 +34,19 @@ namespace BasicCalculator.Controllers
             return Content(msg, "text/pain", System.Text.Encoding.UTF8);
         }
 
-        public IActionResult Number3()
+        public IActionResult Operate(string rawResult)
         {
-            string num = "3";
-            
-            return Content(num, "text/html", System.Text.Encoding.UTF8); 
+            //cast from string to int or float for oparation
+            int val;
+            val = Int32.Parse(rawResult);
+            int newval = val + 20;
+
+            //cast to string to sendback
+            string temp = Convert.ToString(newval);
+            return Content(temp, "text/pain", System.Text.Encoding.UTF8); 
         }
 
-        public IActionResult Number4()
-        {
-            string num = "4";
-            ViewBag.num = num;
-            return View();
-        }
-        public IActionResult Number5()
-        {
-            string num = "5";
-            ViewBag.num = num;
-            return View();
-        }
-        public IActionResult Number6()
-        {
-            string num = "6";
-            ViewBag.num = num;
-            return View();
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
