@@ -36,7 +36,7 @@ namespace BasicCalculator.Controllers
 
         public IActionResult Operate(string rawResult)
         {
-            //example data from view "123+456"
+            //example data from view "123.0+456"
             //split data to *num1 *num2 *operation
             char[] opr = {' ', '+', '-', '×', '÷' };
             string[] nums = rawResult.Split(opr);
@@ -47,12 +47,12 @@ namespace BasicCalculator.Controllers
             bool haveDiv = rawResult.Contains("÷");
             bool haveMul = rawResult.Contains("×");
             
-            //
+            
 
-            uint val1 = Convert.ToUInt32(nums[0]);
-            uint val2 = Convert.ToUInt32(nums[1]);
+            double val1 = Convert.ToDouble(nums[0]);
+            double val2 = Convert.ToDouble(nums[1]);
 
-            uint newval =0;
+            double newval =0;
 
             if (havePlus|haveSecondPlus) {
                 newval =val1 + val2;
