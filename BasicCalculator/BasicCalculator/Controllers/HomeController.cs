@@ -39,7 +39,10 @@ namespace BasicCalculator.Controllers
             //example data from view "123.0+456"
             //split data to *num1 *num2 *operation
             char[] opr = {' ', '+', '-', '×', '÷' };
-            string[] nums = rawResult.Split(opr);
+            string[] nums;
+            double val1;
+            double val2;
+            double newval =0;
 
             bool havePlus = rawResult.Contains("+");
             bool haveSecondPlus = rawResult.Contains(" ");
@@ -47,35 +50,74 @@ namespace BasicCalculator.Controllers
             bool haveDiv = rawResult.Contains("÷");
             bool haveMul = rawResult.Contains("×");
             
-            
-
-            double val1 = Convert.ToDouble(nums[0]);
-            double val2 = Convert.ToDouble(nums[1]);
-
-            double newval =0;
-
-            if (havePlus|haveSecondPlus) {
-                newval =val1 + val2;
+            Boolean checkLastOparate(string rawResult) {
+                string last = rawResult.Substring(rawResult.Length-1);
+                if (last == "+" | last == " " | last == "-" | last == "×" | last == "÷")
+                {
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
 
-            if (haveSub)
+            if (checkLastOparate(rawResult))
             {
-                newval = val1 - val2;
+                if (rawResult.Substring(rawResult.Length - 1)==" ")
+                {
+                    rawResult = rawResult.Remove(rawResult.Length - 1, 1);
+                    rawResult = rawResult + "+";
+                    return Content(rawResult, "text/pain", System.Text.Encoding.UTF8);
+                }
+                else
+                {
+                    return Content(rawResult, "text/pain", System.Text.Encoding.UTF8);
+                }
             }
-
-            if (haveMul)
+            else
             {
-                newval = val1 * val2;
-            }
+                if (havePlus | haveSecondPlus)
+                {
+                    nums = rawResult.Split(opr);
+                    val1 = Convert.ToDouble(nums[0]);
+                    val2 = Convert.ToDouble(nums[1]);
+                    newval = val1 + val2;
+                }
 
-            if (haveDiv)
-            {
-                newval = val1 / val2;
-            }
+                if (haveSub)
+                {
+                    nums = rawResult.Split(opr);
+                    val1 = Convert.ToDouble(nums[0]);
+                    val2 = Convert.ToDouble(nums[1]);
+                    newval = val1 - val2;
+                }
 
+                if (haveMul)
+                {
+                    nums = rawResult.Split(opr);
+                    val1 = Convert.ToDouble(nums[0]);
+                    val2 = Convert.ToDouble(nums[1]);
+                    newval = val1 * val2;
+                }
+
+                if (haveDiv)
+                {
+                    nums = rawResult.Split(opr);
+                    val1 = Convert.ToDouble(nums[0]);
+                    val2 = Convert.ToDouble(nums[1]);
+                    newval = val1 / val2;
+                }
+
+                if (!havePlus && !haveSub && !haveSecondPlus && !haveMul && !haveDiv)
+                {
+                    newval = Convert.ToDouble(rawResult);
+                }
+                string temp = Convert.ToString(newval);
+                return Content(temp, "text/pain", System.Text.Encoding.UTF8); 
+
+            }
             //cast to string to sendback
-            string temp = Convert.ToString(newval);
-            return Content(temp, "text/pain", System.Text.Encoding.UTF8); 
+            
         }
 
         
