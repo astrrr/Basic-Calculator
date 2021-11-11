@@ -36,10 +36,42 @@ namespace BasicCalculator.Controllers
 
         public IActionResult Operate(string rawResult)
         {
-            //cast from string to int or float for oparation
-            int val;
-            val = Int32.Parse(rawResult);
-            int newval = val + 20;
+            //example data from view "123+456"
+            //split data to *num1 *num2 *operation
+            char[] opr = {' ', '+', '-', '×', '÷' };
+            string[] nums = rawResult.Split(opr);
+
+            bool havePlus = rawResult.Contains("+");
+            bool haveSecondPlus = rawResult.Contains(" ");
+            bool haveSub = rawResult.Contains("-");
+            bool haveDiv = rawResult.Contains("÷");
+            bool haveMul = rawResult.Contains("×");
+            
+            //
+
+            uint val1 = Convert.ToUInt32(nums[0]);
+            uint val2 = Convert.ToUInt32(nums[1]);
+
+            uint newval =0;
+
+            if (havePlus|haveSecondPlus) {
+                newval =val1 + val2;
+            }
+
+            if (haveSub)
+            {
+                newval = val1 - val2;
+            }
+
+            if (haveMul)
+            {
+                newval = val1 * val2;
+            }
+
+            if (haveDiv)
+            {
+                newval = val1 / val2;
+            }
 
             //cast to string to sendback
             string temp = Convert.ToString(newval);

@@ -44,15 +44,16 @@
 
 <script>
     var display = document.getElementById('result');
-
+    var result = display.value;
     var xmlhttp = new XMLHttpRequest();
-    
+    const regx = "+-*/";
+    //example data to send to controller "123+456" or "123.2+123"
 
     function pressNum(num) {
         if (display.value[0] == '0') {
             display.value = display.value.slice(1, -1);
             display.value = display.value.concat(num);
-            console.log("have zero");
+            
         }
         else {
             display.value = display.value.concat(num);
@@ -61,8 +62,7 @@
 
     
     function add() {
-        
-        display.value = display.value.concat('+');
+         display.value = display.value.concat('+');
     }
 
     function sub() {
@@ -102,7 +102,7 @@
     }
 
     function equ() {
-        
+        console.log(display.value);
         let txt = display.value;
         xmlhttp.open("GET", "https://localhost:44316/Home/Operate?rawResult="+ txt);
             xmlhttp.onreadystatechange = function () {
